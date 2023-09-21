@@ -15,15 +15,29 @@ const renderError = function () {
   );
 };
 
-const getAndDisplayAdvice = async function () {
+const disabledButton = function () {
+  button.classList.remove('enable');
+  button.classList.add('disable');
+  button.disabled = true;
+};
+
+const enabledButton = function () {
+  button.classList.add('enable');
+  button.classList.remove('disable');
+  button.disabled = false;
+};
+
+const getAdvice = async function () {
   try {
     //Get the advice
+    button.classList.add('loading');
     const res = await fetch('https://api.adviceslip.com/advice');
     const data = await res.json();
-    // if (!res) throw new Error("Problem getting the advice. Please try again");
     slip = data.slip;
 
     //Display the advice
+    button.classList.remove('loading');
+    disabledButton();
     adviceId.textContent = `Advice#${slip.id}`;
     adviceDetail.textContent = slip.advice;
   } catch (err) {
@@ -31,7 +45,13 @@ const getAndDisplayAdvice = async function () {
   }
 };
 
-getAndDisplayAdvice();
+const renderAdvice = function () {
+  getAdvice();
+  setTimeout(() => {
+    enabledButton();
+  }, 2000);
+};
+renderAdvice();
 
 window.addEventListener('resize', function () {
   if (window.innerWidth < 500) {
@@ -66,5 +86,7 @@ window.addEventListener('resize', function () {
 });
 
 button.addEventListener('click', function () {
-  getAndDisplayAdvice();
+  adviceId.textContent = '';
+  adviceDetail.textContent = '';
+  renderAdvice();
 });

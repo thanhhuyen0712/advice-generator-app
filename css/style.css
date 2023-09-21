@@ -49,8 +49,6 @@ body {
   width: 4.8rem;
   border: none;
   border-radius: 50%;
-  background-color: #52ffa8;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,8 +56,6 @@ body {
   top: 100%;
   left: 50%;
   transform: translate(-50%, -50%); }
-  .button:hover::after, .button:active::after {
-    filter: blur(15px); }
   .button::after {
     content: '';
     height: 100%;
@@ -69,3 +65,21 @@ body {
     position: absolute;
     z-index: -1;
     background-color: inherit; }
+
+.enable {
+  background-color: #52ffa8;
+  cursor: pointer; }
+  .enable.button.loading svg {
+    animation: loading 2s infinite; }
+  .enable.button:hover::after, .enable.button:active::after {
+    filter: blur(15px); }
+
+.disable {
+  background-color: #cee3e9;
+  cursor: auto; }
+
+@keyframes loading {
+  0% {
+    transform: rotate(0); }
+  100% {
+    transform: rotate(360deg); } }

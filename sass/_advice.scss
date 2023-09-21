@@ -29,8 +29,6 @@
   width: 4.8rem;
   border: none;
   border-radius: 50%;
-  background-color: $color-neon-green;
-  cursor: pointer;
 
   display: flex;
   justify-content: center;
@@ -41,12 +39,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  &:hover,
-  &:active {
-    &::after {
-      filter: blur(15px);
-    }
-  }
+  // &:hover,
+  // &:active {
+  //   &::after {
+  //     filter: blur(15px);
+  //   }
+  // }
 
   &::after {
     content: '';
@@ -58,5 +56,36 @@
     position: absolute;
     z-index: -1;
     background-color: inherit;
+  }
+}
+
+.enable {
+  background-color: $color-neon-green;
+  cursor: pointer;
+
+  &.button.loading svg {
+    animation: loading 2s infinite;
+  }
+
+  &.button:hover,
+  &.button:active {
+    &::after {
+      filter: blur(15px);
+    }
+  }
+}
+
+.disable {
+  background-color: $color-light-cyan;
+  cursor: auto;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
