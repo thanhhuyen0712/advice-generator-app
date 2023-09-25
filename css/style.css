@@ -76,6 +76,7 @@ body {
 
 .disable {
   background-color: #cee3e9;
+  opacity: 0.7;
   cursor: auto; }
 
 @keyframes loading {
